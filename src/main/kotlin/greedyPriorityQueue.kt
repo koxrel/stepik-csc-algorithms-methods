@@ -3,41 +3,41 @@ class ListMaxHeapPriorityQueue {
 
     private fun siftUp() {
         var currentIndex = container.lastIndex
-        var parentIndex = (currentIndex / 2.0).toInt()
+        var parentIndex = ((currentIndex - 1) / 2.0).toInt()
         while (currentIndex >= 0 && container[parentIndex] < container[currentIndex]) {
             container[parentIndex] = container[currentIndex].also { container[currentIndex] = container[parentIndex] }
             currentIndex = parentIndex
-            parentIndex = (currentIndex / 2.0).toInt()
+            parentIndex = ((currentIndex - 1) / 2.0).toInt()
         }
     }
 
     private fun siftDown() {
         var currentIndex = 0
-        var firstChildNodeIndex = currentIndex * 2 + 1
-        var secondChildNodeIndex = currentIndex * 2 + 2
 
-        while (currentIndex <= container.lastIndex
-            && (firstChildNodeIndex <= container.lastIndex || secondChildNodeIndex <= container.lastIndex)
-            && (container[currentIndex] < container[firstChildNodeIndex]
-                    || container[currentIndex] < container[secondChildNodeIndex])
-        ) {
-            val firstChildNodeValue = container[firstChildNodeIndex]
-            val secondChildNodeValue =
-                if (secondChildNodeIndex <= container.lastIndex) container[secondChildNodeIndex] else null
+        while (currentIndex >= 0) {
+            val firstChildNodeIndex = currentIndex * 2 + 1
+            val secondChildNodeIndex = currentIndex * 2 + 2
 
-            if (firstChildNodeValue > container[currentIndex]) {
+            val firstChildNodeValue = container.getOrNull(firstChildNodeIndex) ?: Int.MIN_VALUE
+            val secondChildNodeValue = container.getOrNull(secondChildNodeIndex) ?: Int.MIN_VALUE
+
+            val targetIndex =
+                if (firstChildNodeValue > container[currentIndex] && secondChildNodeValue > container[currentIndex]) {
+                    if (firstChildNodeValue - secondChildNodeValue >= 0) firstChildNodeIndex else secondChildNodeIndex
+                } else if (firstChildNodeValue > container[currentIndex]) {
+                    firstChildNodeIndex
+                } else if (secondChildNodeValue > container[currentIndex]) {
+                    secondChildNodeIndex
+                } else {
+                    -1
+                }
+
+            if (targetIndex > -1) {
                 container[currentIndex] =
-                    firstChildNodeValue.also { container[firstChildNodeIndex] = container[currentIndex] }
-                currentIndex = firstChildNodeIndex
-                firstChildNodeIndex = currentIndex * 2 + 1
-                secondChildNodeIndex = currentIndex * 2 + 2
-            } else if (secondChildNodeValue != null && secondChildNodeValue > container[currentIndex]) {
-                container[currentIndex] =
-                    secondChildNodeValue.also { container[secondChildNodeIndex] = container[currentIndex] }
-                currentIndex = secondChildNodeIndex
-                firstChildNodeIndex = currentIndex * 2 + 1
-                secondChildNodeIndex = currentIndex * 2 + 2
+                    container[targetIndex].also { container[targetIndex] = container[currentIndex] }
             }
+
+            currentIndex = targetIndex
         }
     }
 
@@ -70,18 +70,12 @@ class ListMaxHeapPriorityQueue {
 
 fun main(args: Array<String>) {
     val scanner = java.util.Scanner(System.`in`)
-    val pq = ListMaxHeapPriorityQueue()
-    pq.add(10)
-    pq.add(8)
-    pq.add(9)
-    pq.add(20)
-    pq.add(15)
-    pq.add(320)
-//    println(pq)
+    val queue = ListMaxHeapPriorityQueue()
 
-    while (pq.isNotEmpty) {
-        println(pq)
-        println(pq.poll())
-        println(pq)
+    repeat(scanner.nextInt()) {
+        when (scanner.next()) {
+            "Insert" -> queue.add(scanner.nextInt())
+            "ExtractMax" -> println(queue.poll())
+        }
     }
 }
