@@ -1,3 +1,5 @@
+package greedy
+
 data class Item(val price: Int, val volume: Int)
 
 fun fillBackpack(availableItems: Array<Item>, capacity: Int): Double {
@@ -21,7 +23,7 @@ fun fillBackpack(availableItems: Array<Item>, capacity: Int): Double {
     return cost
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
     val numItems = scanner.nextInt()
     val backpackCapacity = scanner.nextInt()

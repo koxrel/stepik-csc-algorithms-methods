@@ -1,3 +1,5 @@
+package intro
+
 /**
  * Calculates the greatest common denominator
  * @author Igor Tresoumov
@@ -13,7 +15,7 @@ fun greatestCommonDenominator(a: Long, b: Long): Long {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
     println(greatestCommonDenominator(scanner.nextLong(), scanner.nextLong()))
 }

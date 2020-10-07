@@ -1,3 +1,5 @@
+package greedy
+
 fun coverLineSegmentsWithPoints(segments: Array<Array<Int>>): MutableList<Int> {
     val sortedSegments = segments.sortedBy { it[1] }
     var iteration = 0
@@ -16,7 +18,7 @@ fun coverLineSegmentsWithPoints(segments: Array<Array<Int>>): MutableList<Int> {
     return points
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
     val numSegments = scanner.nextInt()
     val segments = Array(numSegments) { arrayOf(scanner.nextInt(), scanner.nextInt()) }

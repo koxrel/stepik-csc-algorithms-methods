@@ -1,3 +1,5 @@
+package greedy
+
 class ListMaxHeapPriorityQueue {
     private val container: MutableList<Int> = ArrayList()
 
@@ -68,7 +70,7 @@ class ListMaxHeapPriorityQueue {
         }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
     val queue = ListMaxHeapPriorityQueue()
 

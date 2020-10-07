@@ -1,3 +1,5 @@
+package greedy
+
 fun findSummands(number: Int): List<Int> {
     val summands: MutableList<Int> = ArrayList()
 
@@ -15,7 +17,7 @@ fun findSummands(number: Int): List<Int> {
     return summands
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
 
     val summands = findSummands(scanner.nextInt())

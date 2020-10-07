@@ -1,3 +1,5 @@
+package greedy
+
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -64,7 +66,7 @@ fun encode(text: String, encodingTable: Map<String, String>): String {
         .joinToString("")
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = Scanner(System.`in`)
 
     val text = scanner.next()

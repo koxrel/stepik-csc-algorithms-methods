@@ -1,3 +1,5 @@
+package intro
+
 fun fibonacci(n: Long): Long {
     when (n) {
         0L -> return 0
@@ -36,7 +38,7 @@ fun lastFibonacciDigit(n: Int): Int {
     return currentFibonacci
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scanner = java.util.Scanner(System.`in`)
     println(fibonacci(scanner.nextLong()) % scanner.nextLong())
 }
