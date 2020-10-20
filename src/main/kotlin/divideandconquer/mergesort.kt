@@ -4,9 +4,9 @@ import java.util.*
 
 var numInversions = 0L
 
-fun mergeSortIterative(array: Array<Int>): Array<Int> {
-    val queue: Queue<Array<Int>> = ArrayDeque()
-    queue.addAll(array.map { arrayOf(it) })
+fun mergeSortIterative(array: IntArray): IntArray {
+    val queue: Queue<IntArray> = ArrayDeque()
+    queue.addAll(array.map { intArrayOf(it) })
 
     while (queue.size > 1) {
         val firstArray = queue.poll()
@@ -15,7 +15,7 @@ fun mergeSortIterative(array: Array<Int>): Array<Int> {
         var firstIndex = 0
         var secondIndex = 0
 
-        val sortedArray: Array<Int> = Array(firstArray.size + secondArray.size) { 0 }
+        val sortedArray = IntArray(firstArray.size + secondArray.size)
 
         for (idx in sortedArray.indices) {
             when {
@@ -46,7 +46,7 @@ fun mergeSortIterative(array: Array<Int>): Array<Int> {
     return queue.poll()
 }
 
-fun mergeSortRecursive(array: Array<Int>): Array<Int> {
+fun mergeSortRecursive(array: IntArray): IntArray {
     return if (array.size > 1) {
         val middleIndex = array.lastIndex / 2
         merge(
@@ -58,11 +58,11 @@ fun mergeSortRecursive(array: Array<Int>): Array<Int> {
     }
 }
 
-fun merge(firstArray: Array<Int>, secondArray: Array<Int>): Array<Int> {
+fun merge(firstArray: IntArray, secondArray: IntArray): IntArray {
     var firstIndex = 0
     var secondIndex = 0
 
-    val sortedArray: Array<Int> = Array(firstArray.size + secondArray.size) { 0 }
+    val sortedArray= IntArray(firstArray.size + secondArray.size)
 
     for (idx in sortedArray.indices) {
         when {
@@ -93,7 +93,7 @@ fun merge(firstArray: Array<Int>, secondArray: Array<Int>): Array<Int> {
 
 fun main() {
     val scanner = Scanner(System.`in`)
-    val array = Array(scanner.nextInt()) { scanner.nextInt() }
+    val array = IntArray(scanner.nextInt()) { scanner.nextInt() }
 
     mergeSortRecursive(array)
     println(numInversions)
